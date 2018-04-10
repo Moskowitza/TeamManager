@@ -28,30 +28,36 @@ function Player(name, position, offense, defense) {
 var count = 0;
 var playerArray = [];
 var askQuestions = function () {
-        if (count < 3) {
-            console.log("NEW PLAYER");
-            inquirer.prompt([
-                {
-                    name: "name",
-                    message: "Players name?"
-                }, {
-                    name: "position",
-                    message: "What is your position?"
-                }, {
-                    name: "offense",
-                    message: "Offense score?"
-                }, {
-                    name: "defense",
-                    message: "Defnese score"
-                }
-            ]).then(function (answers) {
-                // initializes the variable newGuy to be a programmer object which will take
-                // in all of the user's answers to the questions above
-                var player = new Player(answers.name, answers.position, answers.offense, answers.defense);
-                // printInfo method is run to show that the newguy object was successfully created and filled
+    if (count < 3) {
+        console.log("NEW PLAYER");
+        inquirer.prompt([
+            {
+                name: "name",
+                message: "Players name?"
+            }, {
+                name: "position",
+                message: "What is your position?"
+            }, {
+                name: "offense",
+                message: "Offense score?"
+            }, {
+                name: "defense",
+                message: "Defnese score"
+            }
+        ]).then(function (answers) {
+            // initializes the variable newGuy to be a programmer object which will take
+            // in all of the user's answers to the questions above
+            var player = new Player(answers.name, answers.position, answers.offense, answers.defense);
+            // printInfo method is run to show that the newguy object was successfully created and filled
             playerArray.push(player);
-            count ++;
+            count++;
             askQuestions();
-            }); 
+        });
+    }
+    else {
+        for (var x = 0; x < playerArray.length; x++) {
+            playerArray[x].printStats();
         }
+    }
 }
+askQuestions();
