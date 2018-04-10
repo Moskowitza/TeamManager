@@ -19,32 +19,39 @@ function Player(name, position, offense, defense) {
         } else { this.defense += 1 }
     }
 
-// `printStats`: Method which prints all of the player's properties to the screen
+    // `printStats`: Method which prints all of the player's properties to the screen
 
     this.printStats = function () {
         console.log("Name: " + this.name + "\nPosition: " + this.position + "\noffense: " + this.offense + "\ndefense: " + this.defense);
     };
 }
-for (var i = 0; i < 3; i++) {
-inquirer.prompt([
-    {
-      name: "name",
-      message: "Players name?"
-    }, {
-      name: "position",
-      message: "What is your position?"
-    }, {
-      name: "offense",
-      message: "Offense score?"
-    }, {
-      name: "defense",
-      message: "Defnese score"
-    }
-  ]).then(function(answers) {
-    // initializes the variable newGuy to be a programmer object which will take
-    // in all of the user's answers to the questions above
-    var newGuy = new Programmer(answers.name, answers.position, answers.age, answers.language);
-    // printInfo method is run to show that the newguy object was successfully created and filled
-    newGuy.printInfo();
-  });
+var count = 0;
+var playerArray = [];
+var askQuestions = function () {
+        if (count < 3) {
+            console.log("NEW PLAYER");
+            inquirer.prompt([
+                {
+                    name: "name",
+                    message: "Players name?"
+                }, {
+                    name: "position",
+                    message: "What is your position?"
+                }, {
+                    name: "offense",
+                    message: "Offense score?"
+                }, {
+                    name: "defense",
+                    message: "Defnese score"
+                }
+            ]).then(function (answers) {
+                // initializes the variable newGuy to be a programmer object which will take
+                // in all of the user's answers to the questions above
+                var player = new Player(answers.name, answers.position, answers.offense, answers.defense);
+                // printInfo method is run to show that the newguy object was successfully created and filled
+            playerArray.push(player);
+            count ++;
+            askQuestions();
+            }); 
+        }
 }
