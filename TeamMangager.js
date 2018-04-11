@@ -1,4 +1,5 @@
 var inquirer = require("inquirer");
+var sumOffensive=0;
 function Player(name, position, offense, defense) {
     this.name = name;//`name`: Property which contains the player's name
     this.position = position;//`position`: Property which holds the player's position
@@ -57,7 +58,23 @@ var askQuestions = function () {
     else {
         for (var x = 0; x < playerArray.length; x++) {
             playerArray[x].printStats();
+            playGame();
+        }
+        var sumOffense = function () {
+            for (i = 0; i < playerArray.length; i++) {
+                if (playerArray[i].position == "starter"){
+                 sumOffensive=sumOff+playerArray[i].offense;
+                }
+        
         }
     }
+
 }
+
 askQuestions();
+var playGame = function () {
+    var num1 = Math.floor((Math.random() * 20) + 1)
+    var num2 = Math.floor((Math.random() * 20) + 1)
+    console.log(num1)
+    console.log(num2)
+}
